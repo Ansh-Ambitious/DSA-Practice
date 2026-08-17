@@ -19,12 +19,20 @@
     Space Complexity: O(1)
 */
 
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
 class Solution {
 public:
-    int maxArea(vector<int>& height) {
+    int maxArea(std::vector<int>& height) {
+
+        if (height.empty())
+            return 0;
 
         int left = 0;
-        int right = height.size() - 1;
+        int right = (int)height.size() - 1;
 
         int maxWater = 0;
 
@@ -32,12 +40,11 @@ public:
 
             int width = right - left;
 
-            int currentHeight =
-                min(height[left], height[right]);
+            int currentHeight = std::min(height[left], height[right]);
 
             int currentArea = width * currentHeight;
 
-            maxWater = max(maxWater, currentArea);
+            maxWater = std::max(maxWater, currentArea);
 
             if (height[left] < height[right])
                 left++;
